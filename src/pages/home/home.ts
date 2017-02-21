@@ -1,6 +1,11 @@
 import { Component } from '@angular/core';
 
-import { NavController } from 'ionic-angular';
+import { NavController, AlertController } from 'ionic-angular';
+
+import {AngularFire, FirebaseListObservable} from 'angularfire2';
+
+//Import details page
+import { DetailsPage } from '../details/details';
 
 @Component({
   selector: 'page-home',
@@ -8,8 +13,22 @@ import { NavController } from 'ionic-angular';
 })
 export class HomePage {
 
-  constructor(public navCtrl: NavController) {
+  //Properties
+  todos: FirebaseListObservable<any>;
+  //Constructor
+  constructor(public navCtrl: NavController, public alertCtrl: AlertController, af:AngularFire) {
+    this.todos = af.database.list('/todos');
 
   }
+
+  //Methods
+  addTodo(){
+    this.navCtrl.push(DetailsPage);
+  }
+
+  editTodo() {
+    this.navCtrl.push(DetailsPage);
+  }
+
 
 }
