@@ -9,16 +9,20 @@
 
 <ion-content>
   <ion-list>
-    <ion-input stacked-label>
-      <ion-label>To-Do Name</ion-label>
-      <input type="text" [(ngModel)]="todo.name">
-    </ion-input>
-    <ion-input stacked-label>
-      <ion-label>Details</ion-label>
-      <input type="text" [(ngModel)]="todo.details">
-    </ion-input>
+    <ion-item>
+      <ion-label stacked>To-do Name</ion-label>
+      <ion-input type="text" [(ngModel)]="name" name="name"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label stacked>Notes</ion-label>
+      <ion-textarea [(ngModel)]="details" name="details"></ion-textarea>
+    </ion-item>
+    <ion-item>
+      <ion-label>Completed</ion-label>
+      <ion-checkbox [(ngModel)]="complete" name="complete"></ion-checkbox>
+    </ion-item>
   </ion-list>
-  <button (click)="saveToDo()">
+  <button (click)="saveToDo($key, name, details, complete)">
     <ion-icon name="checkmark"></ion-icon>
     Save</button>
 </ion-content>

@@ -3,6 +3,9 @@ import { NavController, NavParams } from 'ionic-angular';
 
 import {AngularFire, FirebaseListObservable} from 'angularfire2';
 
+//Import home page
+import { HomePage } from '../home/home';
+
 /*
   Generated class for the Details page.
 
@@ -17,22 +20,35 @@ export class DetailsPage {
 
   //Properties
   todos: FirebaseListObservable<any>;
+  $key: string;
+  name: string;
+  details: string;
+  complete: boolean;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, af:AngularFire) {
     this.todos = af.database.list('/todos');
+    this.$key = navParams.get('$key');
+    this.name = navParams.get('name');
+    this.details = navParams.get('details');
+    this.complete = navParams.get('complete');
   }
 
-  // saveToDo(ngModel){
-  //    this.todos.push({
-  //           name: ngModel.name,
-  //           details: ngModel.details
-  //     });
-
-    saveToDo(newToDo) {
-      this.todos.push({
-            name: newToDo.name,
-            details: newToDo.details
-      });
+    saveToDo($key, name, details, complete){
+      if($key){
+        this.todos.update($key, {
+          name: name,
+          details: details,
+          complete: complete
+        });
+      }
+      else{
+        this.todos.push({
+              name: name,
+              details: details,
+              complete: false
+        });
+      }
+      this.navCtrl.push(HomePage);
     }
 
   ionViewDidLoad() {

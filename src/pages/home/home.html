@@ -15,12 +15,16 @@
         <ion-col>To-Do</ion-col>
         <ion-col>Details</ion-col>
         <ion-col>Completed?</ion-col>
+        <ion-col></ion-col>
       </ion-row>
     <ion-list inset *ngFor="let todo of todos | async">
       <ion-row class="{{todo.complete}}">
         <ion-col>{{todo.name}}</ion-col>
         <ion-col>{{todo.details}}</ion-col>
         <ion-col><ion-checkbox checked="{{todo.complete}}" color="primary" (click)="updateComplete(todo.$key, todo.complete)"></ion-checkbox></ion-col>
+         <button ion-button item-right color="primary" (click)="editToDo(todo.$key, todo.name, todo.details, todo.complete)">
+           Edit
+         </button>
       </ion-row>
     </ion-list>
   </ion-list>

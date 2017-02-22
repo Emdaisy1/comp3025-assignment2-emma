@@ -25,13 +25,18 @@ export class HomePage {
   //   this.navCtrl.push(DetailsPage);
   // }
 
-  addToDo(){    
-    
+  addToDo(todo){    
+    this.navCtrl.push(DetailsPage, {
+      
+    });
   }
 
-  editToDo(todo) {
+  editToDo($key, name, details, complete) {
     this.navCtrl.push(DetailsPage, {
-      todo: todo
+      $key: $key,
+      name: name,
+      details: details,
+      complete: complete
     });
   }
 
