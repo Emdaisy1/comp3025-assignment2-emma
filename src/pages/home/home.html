@@ -11,25 +11,17 @@
     Add New To-Do
   </button>
   <ion-list inset>
-    <ion-item-sliding *ngFor="let todo of todos | async">
-      <ion-item>
-        <ion-row>
-          <ion-col>
-            {{todo.name}}
-          </ion-col>
-          <ion-col>
-            {{todo.details}}
-          </ion-col>
-          <ion-col>
-            {{todo.completed}}
-          </ion-col>
-        </ion-row>
-      </ion-item>
-      <ion-item-options side="right">
-        <button ion-button color="primary">
-        <ion-icon name="build" ></ion-icon>
-        Edit</button>
-      </ion-item-options>
-    </ion-item-sliding>
+      <ion-row>
+        <ion-col>To-Do</ion-col>
+        <ion-col>Details</ion-col>
+        <ion-col>Completed?</ion-col>
+      </ion-row>
+    <ion-list inset *ngFor="let todo of todos | async">
+      <ion-row class="{{todo.complete}}">
+        <ion-col>{{todo.name}}</ion-col>
+        <ion-col>{{todo.details}}</ion-col>
+        <ion-col><ion-checkbox checked="{{todo.complete}}" color="primary" (click)="updateComplete(todo.$key, todo.complete)"></ion-checkbox></ion-col>
+      </ion-row>
+    </ion-list>
   </ion-list>
 </ion-content>

@@ -18,17 +18,36 @@ export class HomePage {
   //Constructor
   constructor(public navCtrl: NavController, public alertCtrl: AlertController, af:AngularFire) {
     this.todos = af.database.list('/todos');
-
   }
 
   //Methods
-  addTodo(){
-    this.navCtrl.push(DetailsPage);
+  // addToDo(){
+  //   this.navCtrl.push(DetailsPage);
+  // }
+
+  addToDo(){    
+    
   }
 
-  editTodo() {
-    this.navCtrl.push(DetailsPage);
+  editToDo(todo) {
+    this.navCtrl.push(DetailsPage, {
+      todo: todo
+    });
   }
 
+  updateComplete(id, complete){
+    console.log('Update completion');
+    if(complete == true){
+      this.todos.update(id, {
+        complete: false
+      });
+    }
+    else{
+      this.todos.update(id, {
+        complete: true
+      });
+    }
+    this.navCtrl.push(HomePage);
+  }
 
 }

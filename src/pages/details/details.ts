@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 
+import {AngularFire, FirebaseListObservable} from 'angularfire2';
+
 /*
   Generated class for the Details page.
 
@@ -13,7 +15,25 @@ import { NavController, NavParams } from 'ionic-angular';
 })
 export class DetailsPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {}
+  //Properties
+  todos: FirebaseListObservable<any>;
+
+  constructor(public navCtrl: NavController, public navParams: NavParams, af:AngularFire) {
+    this.todos = af.database.list('/todos');
+  }
+
+  // saveToDo(ngModel){
+  //    this.todos.push({
+  //           name: ngModel.name,
+  //           details: ngModel.details
+  //     });
+
+    saveToDo(newToDo) {
+      this.todos.push({
+            name: newToDo.name,
+            details: newToDo.details
+      });
+    }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad DetailsPage');
