@@ -15,20 +15,21 @@ export class HomePage {
 
   //Properties
   todos: FirebaseListObservable<any>;
+  totalTodos: number = 0;
+
   //Constructor
   constructor(public navCtrl: NavController, public alertCtrl: AlertController, af:AngularFire) {
     this.todos = af.database.list('/todos');
+    this.todos.subscribe(snapshots => {
+      snapshots.forEach(snapshot => {
+        this.totalTodos += 1;
+      });
+    })
   }
 
   //Methods
-  // addToDo(){
-  //   this.navCtrl.push(DetailsPage);
-  // }
-
-  addToDo(todo){    
-    this.navCtrl.push(DetailsPage, {
-      
-    });
+  addToDo(){    
+    this.navCtrl.push(DetailsPage);
   }
 
   editToDo($key, name, details, complete) {

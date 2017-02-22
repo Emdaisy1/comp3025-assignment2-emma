@@ -7,9 +7,9 @@
 <ion-content padding>
   <h1>To-Do List</h1>
   <button ion-button (click)="addToDo()">
-    <ion-icon name="add"></ion-icon>
     Add New To-Do
   </button>
+  <ion-badge color="light">You have {{totalTodos}} to-dos remaining!</ion-badge>
   <ion-list inset>
       <ion-row>
         <ion-col>To-Do</ion-col>

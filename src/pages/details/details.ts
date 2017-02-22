@@ -34,6 +34,9 @@ export class DetailsPage {
   }
 
     saveToDo($key, name, details, complete){
+      if(name == "") {
+            return;
+      }
       if($key){
         this.todos.update($key, {
           name: name,
@@ -47,6 +50,17 @@ export class DetailsPage {
               details: details,
               complete: false
         });
+      }
+      this.navCtrl.push(HomePage);
+    }
+
+    cancel(){
+      this.navCtrl.push(HomePage);
+    }
+
+    delete($key){
+      if($key){
+        this.todos.remove($key);
       }
       this.navCtrl.push(HomePage);
     }
