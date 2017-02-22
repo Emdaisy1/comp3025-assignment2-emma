@@ -1,21 +1,23 @@
-<ion-header>
+<!--File: details.html
+Author: Emma Hilborn - 200282755
+Description: The to-do details page, which allows the user to add a todo, edit a todo, remove a todo, or return to the home page-->
 
+<ion-header>
   <ion-navbar>
     <ion-title>To-Do Details</ion-title>
   </ion-navbar>
-
 </ion-header>
 
-
+<!-- Show the fields - placeholders where no value, e.g. adding a to-do, or the to-do's values where editing -->
 <ion-content>
   <ion-list>
     <ion-item>
       <ion-label stacked>To-do Name (Required)</ion-label>
-      <ion-input type="text" [(ngModel)]="name" name="name"></ion-input>
+      <ion-input type="text" [(ngModel)]="name" name="name" placeholder="Name (Required)"></ion-input>
     </ion-item>
     <ion-item>
       <ion-label stacked>Details</ion-label>
-      <ion-input type="text" [(ngModel)]="details" name="details"></ion-input>
+      <ion-input type="text" [(ngModel)]="details" name="details" placeholder="Details"></ion-input>
     </ion-item>
     <ion-item>
       <ion-label>Completed?</ion-label>

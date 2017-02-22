@@ -1,3 +1,7 @@
+<!--File: home.html
+Author: Emma Hilborn - 200282755
+Description: The home/main page, which loads the to-do list-->
+
 <ion-header>
   <ion-navbar>
     <ion-title>To-Do List</ion-title>
@@ -9,6 +13,7 @@
   <button ion-button (click)="addToDo()">
     Add New To-Do
   </button>
+  <!-- Display how many to-dos the user has left -->
   <ion-badge color="light">You have {{totalTodos}} to-dos remaining!</ion-badge>
   <ion-list inset>
       <ion-row>
@@ -17,10 +22,12 @@
         <ion-col>Completed?</ion-col>
         <ion-col></ion-col>
       </ion-row>
+    <!-- Pull in the to-dos and set up the fields for each -->
     <ion-list inset *ngFor="let todo of todos | async">
       <ion-row class="{{todo.complete}}">
         <ion-col>{{todo.name}}</ion-col>
         <ion-col>{{todo.details}}</ion-col>
+        <!-- Bind check box to a function to update complete/incomplete on check/uncheck -->
         <ion-col><ion-checkbox checked="{{todo.complete}}" color="primary" (click)="updateComplete(todo.$key, todo.complete)"></ion-checkbox></ion-col>
          <button ion-button item-right color="primary" (click)="editToDo(todo.$key, todo.name, todo.details, todo.complete)">
            Edit

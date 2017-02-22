@@ -1,7 +1,12 @@
+// File: home.scss
+// Author: Emma Hilborn - 200282755
+// Description: The CSS file for the home page
+
 page-home {
 
 }
 
+//When the to-do item has a class of true, it's complete, so grey & strike it out
 .true {
     color: grey;
     text-decoration: line-through;
